@@ -9,6 +9,7 @@ These can be chosen with 1, 2, and 3.
 The Motion detection has multiple options as follows:
 - Motion Outline: this shows an outline of the areas of motion.
 - Motion Ghost: this shows motion like a ghost.
+
 also,
 - Standard View: white output on a black background
 - Inverse View: black output on a white background
