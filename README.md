@@ -4,6 +4,7 @@ The modes are as follows:
 - Basic Webcam
 - Basic Motion Detection
 - Webcam with Motion Detection Overlay
+
 These can be chosen with 1, 2, and 3.
 
 The Motion detection has multiple options as follows:
@@ -13,6 +14,7 @@ The Motion detection has multiple options as follows:
 also,
 - Standard View: white output on a black background
 - Inverse View: black output on a white background
+
 These can be chosen with 4-7.
 
 Note that you can't have an Inverse View in Overlay mode.
