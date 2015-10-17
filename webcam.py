@@ -2,8 +2,8 @@
 
 #this will overlay the motion detector onto a color webcam
 
-#this is a list of import commands. If the user doesn't have Tkinter
-#or other libraries installed, it will fail gracefully instead of
+#this is a list of import commands. If the user doesn't have the
+#necessary libraries installed, it will fail gracefully instead of
 #crashing.
 imports = [
     "import cv2 as cv",
