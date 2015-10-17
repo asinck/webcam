@@ -7,8 +7,6 @@
 #crashing.
 imports = [
     "import cv2 as cv",
-    "import numpy as np",
-    "from scipy import misc",
     "import time"
 ]
 #failedPackages will keep a record of the names of the packages that
