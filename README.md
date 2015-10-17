@@ -19,7 +19,7 @@ These can be chosen with 4-7.
 
 Note that you can't have an Inverse View in Overlay mode.
 
-To run this program, you're going to need cv2, numpy, and scipy. If you don't, it won't run. For cv2, you need python-opencv (on ubuntu, least). 
+To run this program, you're going to need cv2. If you don't have them, it won't run. For cv2, you need python-opencv (on ubuntu, least). 
 
 To close this program, hit escape.
 
