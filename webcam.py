@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 #this will overlay the motion detector onto a color webcam
 
 #this is a list of import commands. If the user doesn't have Tkinter
