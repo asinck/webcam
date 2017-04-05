@@ -1,4 +1,18 @@
-This program provides multiple motion detection features on a webcam.
+#Python Webcam
+
+
+###greenscreen.py
+The greenscreen program is pretty intuitive. Run it, and install any libraries it tells you to. 
+
+Click a color on the webcam stream to select it for screening.
+
+Use the buttons to remove masks.
+
+
+
+###webcam.py
+
+The webcam program provides multiple motion detection features on a webcam.
 
 The modes are as follows:
 - Basic Webcam
@@ -19,7 +33,7 @@ These can be chosen with 4-7.
 
 Note that you can't have an Inverse View in Overlay mode.
 
-To run this program, you're going to need cv2. If you don't have them, it won't run. For cv2, you need python-opencv (on ubuntu, least). 
+To run this program, you're going to need cv2 and Tkinter. If you don't have them, this program won't run. For cv2, on ubuntu, look for the opencv package
 
 To close this program, hit escape.
 
