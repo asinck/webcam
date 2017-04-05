@@ -1,7 +1,7 @@
-#Python Webcam
+# Python Webcam
 
 
-###greenscreen.py
+### greenscreen.py
 The greenscreen program is pretty intuitive. Run it, and install any libraries it tells you to. 
 
 Click a color on the webcam stream to select it for screening.
@@ -10,7 +10,7 @@ Use the buttons to remove masks.
 
 
 
-###webcam.py
+### webcam.py
 
 The webcam program provides multiple motion detection features on a webcam.
 
