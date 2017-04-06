@@ -2,11 +2,13 @@
 
 
 ### greenscreen.py
-The greenscreen program is pretty intuitive. Run it, and install any libraries it tells you to. 
+This program filters out a chosen color from the webcam stream, filling all regions of that color with a background image (provided as `forest.jpg`, which I shamelessly stole from the internet). 
 
-Click a color on the webcam stream to select it for screening.
+When you run this program, it will do a check for necessary libraries, and notify you if it needs any. Install those, and you should be good to go.
 
-Use the buttons to remove masks.
+To select a color for filtering, click on it from the stream. If you click on a region that has been greenscreened out, it will choose the color behind the screen, on the actual stream. You can choose as many colors as you want.
+
+To remove filters (in most recent order), click "Remove last mask". To remove all filters, click "No mask".
 
 
 
