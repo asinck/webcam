@@ -10,7 +10,9 @@ To select a color for filtering, click on it from the stream. If you click on a 
 
 To remove filters (in most recent order), click "Remove last mask". To remove all filters, click "No mask".
 
+This is a frame I took from the program. On the left, you see the inside of a building. On the right, the wall of a stairwell was masked out. The door was masked a little bit because the color was too close to that of the wall.
 
+![0](0.jpg)
 
 ### webcam.py
 
