@@ -14,6 +14,11 @@ This is a frame I took from the program. On the left, you see the inside of a bu
 
 ![0](0.jpg)
 
+### cel_webcam.py
+
+This is a program that does Cel shading on the webcam. It also does Canny edge detection on the stream, to provide outlines on everything. 
+
+
 ### webcam.py
 
 The webcam program provides multiple motion detection features on a webcam.
