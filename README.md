@@ -10,14 +10,11 @@ To select a color for filtering, click on it from the stream. If you click on a 
 
 To remove filters (in most recent order), click "Remove last mask". To remove all filters, click "No mask".
 
-### cel_webcam.py
+This is a frame I took from the program. On the left, you see the inside of a building. On the right, the wall of a stairwell was masked out. The door was masked a little bit because the color was too close to that of the wall.
 
-This is a program that does Cel shading on the webcam. It also does Canny edge detection on the stream, to provide outlines on everything. 
-
+![0](0.jpg)
 
 ### webcam.py
-
-Fair warning: This was written before I knew how to do this properly, so the code is messy.
 
 The webcam program provides multiple motion detection features on a webcam.
 
