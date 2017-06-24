@@ -10,9 +10,14 @@ To select a color for filtering, click on it from the stream. If you click on a 
 
 To remove filters (in most recent order), click "Remove last mask". To remove all filters, click "No mask".
 
+### cel_webcam.py
+
+This is a program that does Cel shading on the webcam. It also does Canny edge detection on the stream, to provide outlines on everything. 
 
 
 ### webcam.py
+
+Fair warning: This was written before I knew how to do this properly, so the code is messy.
 
 The webcam program provides multiple motion detection features on a webcam.
 
