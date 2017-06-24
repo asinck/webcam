@@ -35,7 +35,7 @@ if len(failedPackages) > 0:
 
 class webcam:
     def __init__(self):
-        self.capture = cv.VideoCapture(0)
+        self.capture = cv.VideoCapture(1)
         self.frame = self.capture.read()[1]
         # self.height, self.width = self.t.shape[:2]
 
@@ -68,6 +68,9 @@ class GUI:
         self.mask = []
         self.display.pack()
         self.display.bind('<Button-1>', self.getColor)
+        self.display.bind('<Button-3>', self.picture)
+
+        self.imageNumber = 0;
 
         self.noMaskButton = Button(self.controlFrame, text="No mask", command = lambda : self.setScreen(False, None))
         self.popMaskButton = Button(self.controlFrame, text="Remove last mask", command = lambda : self.popMask())
@@ -76,6 +79,8 @@ class GUI:
         self.popMaskButton.pack(side=RIGHT, fill=BOTH, expand=YES)
 
         self.background = cv.imread("forest.jpg")
+        self.pictureframe = None
+
 
     def stream(self):
         #take a frame
@@ -108,10 +113,10 @@ class GUI:
             # frame = cv.bitwise_and(frame, frame, mask=edges)
 
         #convert the frame to something tk can use
-        cvimage = cv.cvtColor(frame, cv.COLOR_BGR2RGBA)
-        img = Image.fromarray(cvimage)
+        self.pictureframe = cv.cvtColor(frame, cv.COLOR_BGR2RGBA)
+        img = Image.fromarray(self.pictureframe)
         imgtk = ImageTk.PhotoImage(image=img)
-        
+        self.pictureframe = frame
         
         #put the image on the display
         self.display.imgtk = imgtk
@@ -139,22 +144,27 @@ class GUI:
         else:
             
             h, s, v = hsv[0][0]
-            print h, s, v
+            # print h, s, v
             color = [[h-10, max(0, s-100), max(0, v-100)],
                      [h+10, min(255, s+100), min(255, v+100)]]
             lower = np.array(color[0])
             upper = np.array(color[1])
             self.mask.append([lower, upper])
-            print "Filtering colors in range", self.mask
+            # print "Filtering colors in range", self.mask
 
     def popMask(self):
         if (len(self.mask) > 0):
             self.mask.pop()
 
+    def picture(self, event):
+        print "taking picture"
+        cv.imwrite("%d.jpg" %self.imageNumber, self.pictureframe)
+        self.imageNumber += 1
+        
 
 def main():
     root = Tk()
-    root.title("Basic TK Webcam")
+    root.title("Greenscreened Webcam")
     mainFrame = Frame(root)
     mainFrame.pack()
     window = GUI(mainFrame)
