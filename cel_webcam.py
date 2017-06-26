@@ -46,15 +46,15 @@ class webcam:
 class GUI:
     def __init__(self, frame):
         """
-        +----------------------+
-        |                      |
-        |                      |
-        |       display        |
-        |                      |
-        |                      |
-        +----------------------+
-        |[ Toggle Cel Shading ]|
-        +----------------------+
+        +--------------------------+
+        |                          |
+        |                          |
+        |          display         |
+        |                          |
+        |                          |
+        +--------------------------+
+        |[Toggle Cel][Toggle Edges]|
+        +--------------------------+
         """
 
         self.displayFrame = Frame(frame)
@@ -70,31 +70,42 @@ class GUI:
         self.display.pack()
 
         self.normal = True
-
-        self.celButton = Button(self.controlFrame, text="Toggle Cel Shading", command = lambda : self.toggleNormality(None))
+        self.edges = False
+        self.blurLevel = 5
         
-        self.celButton.pack(side=LEFT, fill=BOTH, expand=YES)
+        self.celButton = Button(self.controlFrame, text="Toggle Cel Shading", command = lambda : self.toggleNormality(None))
 
-        self.background = cv.imread("forest.jpg")
+        self.edgesButton = Button(self.controlFrame, text="Toggle Edges", command = lambda : self.toggleEdges(None))
+
+        self.celButton.pack(side=LEFT, fill=BOTH, expand=YES)
+        self.edgesButton.pack(side=LEFT, fill=BOTH, expand=YES)
+
         self.pictureframe = None
 
     def toggleNormality(self, event):
         self.normal = not self.normal
+
+    def toggleEdges(self, event):
+        self.edges = not self.edges
 
     def stream(self):
         #take a frame
         self.webcam.takeFrame()
         frame = self.webcam.frame
         if (not self.normal):
-            edges = cv.Canny(frame, 50, 200)
+            
             
             cel = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-            # frame = cv.bitwise_or(cel, np.array([[[31, 0, 0]]*640]*480))
             frame = cv.bitwise_or(cel, np.array([7, 31, 31]))
-            # edges = cv.GaussianBlur(cv.bitwise_not(edges), (3, 3), 0)
-            edges = cv.bitwise_not(edges)
+            #cv.GaussianBlur(, (3, 3), 0)
+            
             frame = cv.cvtColor(frame, cv.COLOR_HSV2BGR)
-            frame = cv.bitwise_and(frame, frame, mask=edges)
+            frame = cv.medianBlur(frame, self.blurLevel)
+                
+            if (self.edges):
+                edges = cv.Canny(frame, 100, 100)
+                edges = cv.bitwise_not(edges)
+                frame = cv.bitwise_and(frame, frame, mask=edges)
 
             # frame = cv.bitwise_and(frame, np.array(edges))
             
