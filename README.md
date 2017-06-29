@@ -1,10 +1,16 @@
 # Python Webcam
 
+### What's this?
+
+This is a small set of webcam stream processing programs I've written for fun and because they're cool. They primarily do motion and color processing effects. 
+
+When you run a program, it will do a check for necessary libraries, and notify you if it needs any. Install those, and you should be good to go.
+
+
 
 ### greenscreen.py
-This program filters out a chosen color from the webcam stream, filling all regions of that color with a background image (provided as `forest.jpg`, which I shamelessly stole from the internet). 
 
-When you run this program, it will do a check for necessary libraries, and notify you if it needs any. Install those, and you should be good to go.
+This program filters out a chosen color from the webcam stream, filling all regions of that color with a background image (provided as `forest.jpg`, which I shamelessly stole from the internet). 
 
 To select a color for filtering, click on it from the stream. If you click on a region that has been greenscreened out, it will choose the color behind the screen, on the actual stream. You can choose as many colors as you want.
 
@@ -14,14 +20,30 @@ This is a frame I took from the program. On the left, you see the inside of a bu
 
 ![0](0.jpg)
 
+
+##### TODO:
+
+-   Allow a user to choose their own background image, and provide a warning if the dimensions are incorrect.
+
+
+
 ### cel_webcam.py
 
-This is a program that does Cel shading on the webcam. It also does Canny edge detection on the stream, to provide outlines on everything. 
+In short, this is a program that does Cel shading on the webcam. It can also do Canny edge detection on the stream, to provide outlines on everything. 
+
+Cel shading is a graphics technique that makes everything look cartoony. Instead of having realistic lighting, shadows, textures, and so on, it uses a very limited set of colors. These colors come in pairs - a light "normal" version and a dark "shadowed" version. 
+
+##### TODO:
+
+-   Add ability to read from a config file. This will be useful for setting how much blur to put on the stream, among other things. 
+
 
 
 ### webcam.py
 
-The webcam program provides multiple motion detection features on a webcam.
+This is a program that I'm cleaning up that I wrote a long time ago. It's messy. Don't judge :)
+
+This provides multiple motion detection features on a webcam.
 
 The modes are as follows:
 - Basic Webcam
