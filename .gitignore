@@ -1,0 +1,8 @@
+#ignore the backgrounds directory
+backgrounds/
+
+#ignore the working directory
+untracked/
+
+#emacs backup files
+*.*~
