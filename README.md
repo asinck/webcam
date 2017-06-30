@@ -41,31 +41,26 @@ Cel shading is a graphics technique that makes everything look cartoony. Instead
 
 ### webcam.py
 
-This is a program that I'm cleaning up that I wrote a long time ago. It's messy. Don't judge :)
+This provides multiple motion detection features on a webcam. 
 
-This provides multiple motion detection features on a webcam.
+There are three modes:
 
-The modes are as follows:
-- Basic Webcam
-- Basic Motion Detection
-- Webcam with Motion Detection Overlay
+-   Color. This is a standard webcam stream. Nothing notable.
+-   Motion. This is a motion detection mode for the stream.
+-   Both. This can do one of two things. If the motion capture is not inverted (see below), then it will provide a motion capture overlay on the normal color stream. If the motion capture is inverted, it will show only the parts of the color stream that are moving.
 
-These can be chosen with 1, 2, and 3.
+Additionally, there are two settings:
 
-The Motion detection has multiple options as follows:
-- Motion Outline: this shows an outline of the areas of motion.
-- Motion Ghost: this shows motion like a ghost.
+-   Ghosting. This is how much of a border to put on motion. Less ghosting means a sharper, but harder to see, outline on anything moving. More ghosting is the opposite.
 
-also,
-- Standard View: white output on a black background
-- Inverse View: black output on a white background
+-   Invert the motion frame. This changes if the motion display has black on white (default) or white on black. Additionally, this will affect the _both_ mode, as outlined above.
 
-These can be chosen with 4-7.
+    ​
 
-Note that you can't have an Inverse View in Overlay mode.
+The reason motion capture gives outlines instead of the entire moving object is because it's looking at pixels that change. If you're wearing a blue shirt and move around, all pixels that represent that shirt will remain blue. Thus, those pixels didn't "move". 
 
-To run this program, you're going to need cv2 and Tkinter. If you don't have them, this program won't run. For cv2, on ubuntu, look for the opencv package
-
-To close this program, hit escape.
+A screenshot of the program has been provided below of the motion capture mode. Those two dots are my eyes. Other than blinking, I'm sitting very still.
 
 
+
+![webcam_screenshot](webcam_screenshot.png)
