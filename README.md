@@ -18,7 +18,7 @@ To remove filters (in most recent order), click "Remove last mask". To remove al
 
 This is a frame I took from the program. On the left, you see the inside of a building. On the right, the wall of a stairwell was masked out. The door was masked a little bit because the color was too close to that of the wall.
 
-![0](0.jpg)
+![A picture of the program in use.](screenshots/0.jpg)
 
 
 ##### TODO:
@@ -33,8 +33,21 @@ In short, this is a program that does Cel shading on the webcam. It can also do 
 
 Cel shading is a graphics technique that makes everything look cartoony. Instead of having realistic lighting, shadows, textures, and so on, it uses a very limited set of colors. These colors come in pairs - a light "normal" version and a dark "shadowed" version. 
 
+This shows a few markers as a reference.
+
+![Without processing](screenshots/cel-off.png)
+
+This shows the effects of cel shading.
+
+![With Cel shading active](screenshots/cel-on.png)
+
+This adds line borders to the regions of color.
+
+![With Cel shading, and edges](screenshots/cel-edges-on.png)
+
 ##### TODO:
 
+-   Fix the grainy output. 
 -   Add ability to read from a config file. This will be useful for setting how much blur to put on the stream, among other things. 
 
 
@@ -63,4 +76,4 @@ A screenshot of the program has been provided below of the motion capture mode. 
 
 
 
-![webcam_screenshot](webcam_screenshot.png)
+![webcam_screenshot](screenshots/webcam_screenshot.png)
