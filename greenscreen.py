@@ -35,7 +35,7 @@ if len(failedPackages) > 0:
 
 class webcam:
     def __init__(self):
-        self.capture = cv.VideoCapture(1)
+        self.capture = cv.VideoCapture(0)
         self.frame = self.capture.read()[1]
         # self.height, self.width = self.t.shape[:2]
 
