@@ -6,3 +6,7 @@ untracked/
 
 #emacs backup files
 *.*~
+
+#Don't worry about the config file, because I'll be changing it during development
+config.conf
+
