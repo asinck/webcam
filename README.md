@@ -77,3 +77,11 @@ A screenshot of the program has been provided below of the motion capture mode. 
 
 
 ![webcam_screenshot](screenshots/webcam_screenshot.png)
+
+
+
+### color_tracker.py
+
+This program tracks the motion of items of a certain color. To use this program, click on an object to choose that color for tracking. Anything of that color will be considered for which has the most motion, or if there's a significant amount of motion at all. 
+
+Screenshots to be added soon.
