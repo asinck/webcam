@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #Adam Sinck
 
-#This program should use the webcam to draw on the screen
+#This program provides greenscreen functionality to the user for any
+#color.
 
 #this is a list of import commands. If the user doesn't have Tkinter
 #or other libraries installed, it will fail gracefully instead of
