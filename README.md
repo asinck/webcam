@@ -18,7 +18,7 @@ To remove filters (in most recent order), click "Remove last mask". To remove al
 
 This is a frame I took from the program. On the left, you see the inside of a building. On the right, the wall of a stairwell was masked out. The door was masked a little bit because the color was too close to that of the wall.
 
-![A picture of the program in use.](screenshots/0.jpg)
+![A picture of the program in use.](screenshots/greenscreen-screenshot.jpg)
 
 
 ##### TODO:
@@ -80,8 +80,39 @@ A screenshot of the program has been provided below of the motion capture mode. 
 
 
 
+
+
+### Vampire.py
+
+Continuing on the theme of being creepy, this program lets you fade from the stream. The ideal use of this is to set the background as your empty chair, set stream transparency to 0%, and sit back down. Then you can adjust the slider at will to fade out of your chair.
+
+Below is an example run of the program. No product placement, I promise! This is just what I had handy.
+
+
+
+This is the live stream.
+
+![vampire-0](screenshots/vampire-0.png)
+
+Below is a 50% mix of the live stream and the background frame. 
+
+![vampire-50](screenshots/vampire-50.png)
+
+The following picture shows 100% transparency, which means it's just showing the background frame. This means that the input stream from the webcam is being ignored. 
+
+![vampire-100](screenshots/vampire-100.png)
+
+In the following screenshot, the battery pack has been removed and the stream transparency set to 24%. This shows a "shadow" of what was there, but is no longer. The effect of this would be more entertaining in a live stream instead of a screenshot. Note the shadows outlining what is still there.
+
+![vampire-missing](screenshots/vampire-missing.png)
+
+
+
 ### color_tracker.py
 
 This program tracks the motion of items of a certain color. To use this program, click on an object to choose that color for tracking. Anything of that color will be considered for which has the most motion, or if there's a significant amount of motion at all. 
 
 Screenshots to be added soon.
+
+
+
