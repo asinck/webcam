@@ -9,7 +9,6 @@
 imports = [
     "from Tkinter import *",
     "import Tkinter as tk",
-    "from PIL import Image, ImageTk",
     "import cv2 as cv",
     "import numpy as np"
 ]
@@ -32,94 +31,26 @@ if len(failedPackages) > 0:
     print failedPackages
     exit()
 
+from webcam import webcam        
+from webcamGUI import GUI
 
-#This is the class for the webcam. Right now, it doesn't do much, but
-#in the future it might.
-class webcam:
+class cel:
     def __init__(self):
-        self.config = None
-        self.variables = {'webcam':'0'}
-        try:
-            #open the config file
-            self.config = open("config.conf", 'r')
-            #go through each line
-            for line in self.config:
-                myline = line.strip()
-                #check that it's not a comment, and that it contains
-                #an equal sign
-                if (len(myline) > 0 and myline[0] != '#' and '=' in myline):
-                    #grab the variables, removing any comments
-                    myline = myline.split("#")[0].strip()
-                    myline = myline.split("=")
-                    self.variables[myline[0].strip()] = ' '.join(myline[1:]).strip()
-            self.config.close()
-
-        #if there's no config file, close
-        except:
-            self.config = open("config.conf", 'w+')
-            self.config.write("webcam=0")
-            self.config.close()
-
-        #initialize the webcam
-        self.capture = None
-        try:
-            self.capture = cv.VideoCapture(int(self.variables["webcam"]))
-            # self.capture = cv.VideoCapture(int(variables["webcam"]))
-        except:
-            print "Unable to open webcam specified in config. Opening"
-            print "default webcam instead."
-            self.capture = cv.VideoCapture(0)
-
-        #take a first frame
-        self.frame = self.capture.read()[1]
-        # self.height, self.width = self.t.shape[:2]
-
-    def takeFrame(self):
-        #take a frame
-        self.frame = self.capture.read()[1]
-        
-
-class GUI:
-    #This is the main GUI. It takes a frame as an argument, which it
-    #will embed everything into. Not real useful here because of USB
-    #webcam limitations, but so it is. 
-    def __init__(self, frame):
-        """
-        +--------------------------+
-        |                          |
-        |                          |
-        |          display         |
-        |                          |
-        |                          |
-        +--------------------------+
-        |[Toggle Cel][Toggle Edges]|
-        +--------------------------+
-        """
-
-        #Two frames: The frame for the stream, and the frame for the
-        #control panels. 
-        self.displayFrame = Frame(frame)
-        self.controlFrame = Frame(frame)
-        self.displayFrame.pack(side=TOP)
-        self.controlFrame.pack(side=BOTTOM, fill=X, expand=YES)
-
-
-        #The display is a label.
-        self.display = Label(self.displayFrame)
-        self.display.after(10, self.stream)
-        self.display.pack()
-        
-        #This is for working with the frames taken from the webcam. It
-        #gets displayed on self.display.
-        self.pictureframe = None
-
 
         #init the webcam in its class
         self.webcam = webcam()
 
-        #This is what does the Cel masking. The numbers are powers of
-        #two minus 1, so that when the mask is bitwise or'd with a
-        #frame, it will convert the last bits of the H, S, and V to 1's.
+        #init the GUI, with a title
+        self.GUI = GUI("Cel Shading Webcam")
+
+        #get the frame that everything needs to pack into
+        self.mainframe = self.GUI.getParentFrame()
+        
+        #This is what does the Cel masking. The numbers are (2^n)-1
+        #(for arbitrarily chosen values) of n so that when the mask is
+        #bitwise or'd with a frame, it will convert the last bits of
+        #the H, S, and V to 1's. This has the effect of rounding up to
+        #certain numbers.
         self.mask = np.array([7, 31, 31])
 
         #some conditions and variables.
@@ -131,18 +62,25 @@ class GUI:
         self.blurLevel = 5
 
         #add a couple buttons to toggle these
-        self.celButton = Button(self.controlFrame, text="Toggle Cel Shading",
+        self.celButton = Button(self.mainframe, text="Toggle Cel Shading",
                                 command = lambda : self.toggleCel(None))
 
-        self.edgesButton = Button(self.controlFrame, text="Toggle Edges",
+        self.edgesButton = Button(self.mainframe, text="Toggle Edges",
                                   command = lambda :self.toggleEdges(None),
                                   state="disabled")
         
         self.celButton.pack(side=LEFT, fill=BOTH, expand=YES)
         self.edgesButton.pack(side=LEFT, fill=BOTH, expand=YES)
 
+        #put my stuff in the GUI
+        self.GUI.packControls(self.mainframe)
         
-        
+        #start the stream
+        self.mainframe.after(10, self.stream)
+
+        #start the root mainloop
+        self.GUI.run()
+
     #These are functions to toggle what the webcam's doing.
     
     #Enable/disable cel shading. Also, a user should only be able to
@@ -194,30 +132,14 @@ class GUI:
                 #put the edges on the frame
                 frame = cv.bitwise_and(frame, frame, mask=edges)
 
-        
-        #convert the frame to something tk can use
-        self.pictureframe = cv.cvtColor(frame, cv.COLOR_BGR2RGBA)
-        img = Image.fromarray(self.pictureframe)
-        imgtk = ImageTk.PhotoImage(image=img)
-        self.pictureframe = frame
-        
-        #put the image on the display
-        self.display.imgtk = imgtk
-        self.display.configure(image=imgtk)
-        
+                #show the frame
+        self.GUI.updateImage(frame)
+
         #tell it to take another frame after five units of time
-        self.display.after(5, self.stream)
+        self.mainframe.after(5, self.stream)
 
 
 #start everything
-def main():
-    root = Tk()
-    root.title("Cel Shading Webcam")
-    mainFrame = Frame(root)
-    mainFrame.pack()
-    window = GUI(mainFrame)
-    root.mainloop()
-
-
 if __name__ == "__main__":
-    main()
+    cel()
+
