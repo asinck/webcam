@@ -10,3 +10,5 @@ untracked/
 #Don't worry about the config file, because I'll be changing it during development
 config.conf
 
+#python pyc's
+*.pyc
